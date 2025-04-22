@@ -28,7 +28,7 @@ This is a small application for organizing your time and tasks, written in Pytho
 
 Install required packages:
 
-pip instal -r requirements.txt
+pip install -r requirements.txt
 
 ## How to run
 

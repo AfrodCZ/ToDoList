@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from app.storage import save_task, load_tasks, export_task
+from app.storage import load_tasks, export_task, Database
 from logic import Task
 import storage
 
@@ -8,7 +8,7 @@ def main():
 
     print("Welcome to Your Personal To Do List")
     while True:
-        print("Choose first option\n 1. Add task \n 2. Edit task \n 3. Delete task \n 4. Show all task ")
+        print("Choose first option\n 1. Add task \n 2. Mark task as Done \n 3. Delete task \n 4. Show all task ")
         choice = input("Choose option: ")
 
         if choice == "1":
