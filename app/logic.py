@@ -10,3 +10,5 @@ class Task:
 
     def to_list(self):
         return [self.title, self.date, self.priority, self.status]
+    def to_dict(self):
+        return {"title": self.title, "date": self.date, "priority": self.priority, "status": self.status}

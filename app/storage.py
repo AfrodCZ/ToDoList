@@ -1,8 +1,10 @@
 import csv
 import sqlite3
+from csv import DictWriter
 from dataclasses import field
 from operator import delitem
 from logic import Task
+import os
 # veškeré operace s databází, konstruktor pro sestavení a ověření, zda existuje DB
 # vymyslet, jak jednotlivé funkce volat z programu
 class Database:
@@ -29,10 +31,16 @@ class Database:
 
 
 # export tasku do CSV
-def export_task(task, filename="tasks.csv"):
-    with open(filename,'a', newline='', encoding='utf-8') as csvfile:
-        writer = csv.writer(csvfile )
-        writer.writerow(task.to_list())
+def save_task(task, filename="tasks.csv"):
+    file_exists = os.path.exists(filename)
+    write_header = not file_exists or os.stat(filename).st_size == 0
+
+    with open(filename, 'a', newline='') as csvfile:
+        fieldnames = ['title', 'date', 'priority', 'status']
+        writer = DictWriter(csvfile, fieldnames=fieldnames)
+        if write_header:
+            writer.writeheader()
+        writer.writerow(task.to_dict())
 
 # nahrání CSV
 def load_tasks(filename="tasks.csv"):
@@ -44,10 +52,27 @@ def load_tasks(filename="tasks.csv"):
                  title = row['title'],
                  date = row['date'],
                  priority = row['priority'],
-                status = row['status']
+                 status = row['status']
             )
             tasks.append(task)
     return tasks
+#pomocná funkce pro uložení změněných hodnot
+
+def save_all_tasks(tasks, filename="tasks.csv"):
+    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = ["title", "date", "priority", "status"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for task in tasks:
+            writer.writerow({
+                "title": task.title,
+                "date": task.date,
+                "priority": task.priority,
+                "status": task.status
+            })
+
+
+
 # import z CSV do DB
 
 
