@@ -31,13 +31,13 @@ Install required packages:
 pip install -r requirements.txt
 
 ## How to start App
-python -m main.py
+python -m app.main
 
 ## How to run API
 
 Start the FastAPI server (backend)
 
-uvicorn app.main:app --reload
+uvicorn app.fapi:app --reload
 
 The API will be available at:
 http://127.0.0.1:8000
