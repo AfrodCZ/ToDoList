@@ -2,35 +2,38 @@
 
 ### What is this?
 
-This is a small application for organizing your time and tasks, written in Python.
+This is a small application for organizing your time and tasks, written in Python for CLI.
 
 - Add tasks
 - Set deadlines and priorities
-- View tasks by priority or deadline
+- View all tasks
 - Mark tasks as done
 - Save tasks to SQLite
 - Export tasks to CSV
-- Includes a simple API for frontend or mobile apps
+- Includes a simple API for frontend
 
 ### Unit tests in the app:
 
 - Adding a task
 - Marking a task as done
-- Filtering by priority or deadline
+- Showing all tasks
 - Saving and loading tasks
 
 ---
 
 ## Reauirements
 
-- Python 3.10+
+- Python 3.12+
 - pip
 
 Install required packages:
 
 pip install -r requirements.txt
 
-## How to run
+## How to start App
+python -m main.py
+
+## How to run API
 
 Start the FastAPI server (backend)
 

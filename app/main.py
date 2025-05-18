@@ -1,21 +1,26 @@
 from datetime import datetime
 
 from app.storage import load_tasks, save_task, Database, save_all_tasks
-from logic import Task
-import storage
+from app.logic import Task
+import app.storage
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 def main():
     while True:
         print("Choose first option\n 1. Add task \n 2. Mark task as Done \n 3. Delete task \n 4. Show all task \n q: Exit")
         choice = input("Choose option: ")
-        FILE = "tasks.csv"
+        FS = "tasks.csv"
 
         if choice == "1":
             title = input("Create name task: ")
+            description = input("Fill you description: ")
             date = input("Fill you date d-m-Y: ")
-            priority = input("Fill priority: ")
+            priority = input(f"Fill priority: \n Low \n Medium \n High \n Very High \n")
             try:
-                task_create = Task(title, date, priority, status="New")
+                task_create = Task(title, description, date, priority, status="New")
                 save_task(task_create)
                 print("Task was successfully created")
             except Exception as e:
