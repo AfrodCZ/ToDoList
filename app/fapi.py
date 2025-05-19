@@ -3,12 +3,13 @@ from app.logic import Task
 from pydantic import BaseModel
 from app.storage import save_task, load_tasks, save_all_tasks
 from fastapi.responses import JSONResponse
+from typing import Optional
 
 class TaskModel(BaseModel):
     title: str
-    description: str
-    date: str
-    priority: str
+    description: Optional[str] = None
+    date: Optional[str] = None
+    priority: Optional[str] = None
 
 app = FastAPI()
 
@@ -28,3 +29,20 @@ def post_task(task: TaskModel):
     )
     save_task(task_create, filename="app/tasks.csv")
     return {"message": "Task saved", "task": task_create.to_dict()}
+
+@app.put("/update")
+def put_task(task: TaskModel):
+    tasks = load_tasks(filename="app/tasks.csv")
+    updated = False
+
+    for t in tasks:
+        if t.title == task.title:
+            t.status = "Done"
+            updated = True
+            break
+
+    if updated:
+        save_all_tasks(tasks, filename="app/tasks.csv")
+        return {"message": f"Úkol '{task.title}' označen jako hotový."}
+    else:
+        return {"error": f"Úkol '{task.title}' nebyl nalezen."}
