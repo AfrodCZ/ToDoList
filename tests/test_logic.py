@@ -1,7 +1,7 @@
 from app.logic import Task
 
 def test_create_task():
-    task = Task("Test", "Popis", "2025-01-01", "Vysoká")
+    task = Task("Test", "Desc", "01.12.2025", "High")
     assert task.title == "Test"
     assert task.description == "Desc"
     assert task.date == "01.12.2025"
