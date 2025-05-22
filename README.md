@@ -8,7 +8,7 @@ This is a small application for organizing your time and tasks, written in Pytho
 - Set deadlines and priorities
 - View all tasks
 - Mark tasks as done
-- Save tasks to SQLite
+- Save tasks to SQLite - in progess
 - Export tasks to CSV
 - Includes a simple API for frontend
 
@@ -18,6 +18,9 @@ This is a small application for organizing your time and tasks, written in Pytho
 - Marking a task as done
 - Showing all tasks
 - Saving and loading tasks
+
+### Version 2.0 will be in Flet framework
+IN PROGRESS
 
 ---
 
@@ -46,5 +49,4 @@ You can try it using the built-in docs:
 http://127.0.0.1:8000/docs
 
 ## How to start Unit tests
-WILL BE ADDED
 python -m unittest doscover tests
